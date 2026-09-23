@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "start": "npm start --prefix user-auth-api/user-auth-api",
+    "dev": "npm run dev --prefix user-auth-api/user-auth-api",
+    "test": "npm test --prefix user-auth-api/user-auth-api"
+  },
   "dependencies": {
     "nodemailer": "^10.0.10"
   }
