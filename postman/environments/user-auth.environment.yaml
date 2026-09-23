@@ -1,0 +1,34 @@
+name: User Auth API - Local
+values:
+  - key: baseUrl
+    value: 'http://localhost:5001'
+    type: default
+    enabled: true
+  - key: token
+    value: ''
+    type: secret
+    enabled: true
+  - key: adminToken
+    value: ''
+    type: secret
+    enabled: true
+  - key: sellerToken
+    value: ''
+    type: secret
+    enabled: true
+  - key: buyerToken
+    value: ''
+    type: secret
+    enabled: true
+  - key: userId
+    value: ''
+    type: default
+    enabled: true
+  - key: productId
+    value: ''
+    type: default
+    enabled: true
+  - key: orderId
+    value: ''
+    type: default
+    enabled: true

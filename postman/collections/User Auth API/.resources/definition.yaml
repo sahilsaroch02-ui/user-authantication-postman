@@ -1,0 +1,6 @@
+$kind: collection
+name: User Auth API
+description: Complete API collection for User Authentication, Products, and Orders
+variables:
+  - key: baseUrl
+    value: 'http://localhost:5001'

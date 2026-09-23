@@ -1,0 +1,23 @@
+$kind: http-request
+method: POST
+url: '{{baseUrl}}/api/auth/signin'
+order: 8000
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "email": "buyer@example.com",
+      "password": "Buyer@1234"
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status is 200", () => pm.response.to.have.status(200));
+      pm.test("Has token", () => pm.expect(pm.response.json()).to.have.property("token"));
+      if (pm.response.code === 200) {
+        pm.environment.set("buyerToken", pm.response.json().token);
+      }

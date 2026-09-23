@@ -1,0 +1,24 @@
+$kind: http-request
+method: PUT
+url: '{{baseUrl}}/api/auth/profile'
+order: 10000
+auth:
+  type: bearer
+  credentials:
+    - key: token
+      value: '{{token}}'
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Updated User"
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status is 200", () => pm.response.to.have.status(200));
+      pm.test("Profile updated", () => pm.expect(pm.response.json()).to.have.property("message"));

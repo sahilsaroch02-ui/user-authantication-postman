@@ -1,0 +1,19 @@
+$kind: http-request
+method: GET
+url: '{{baseUrl}}/api/auth/profile'
+order: 9000
+auth:
+  type: bearer
+  credentials:
+    - key: token
+      value: '{{token}}'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status is 200", () => pm.response.to.have.status(200));
+      pm.test("Has user object", () => pm.expect(pm.response.json()).to.have.property("user"));
+      pm.test("User has id, name, email, role", () => {
+        const u = pm.response.json().user;
+        pm.expect(u).to.have.all.keys("id", "name", "email", "role");
+      });

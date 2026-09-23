@@ -1,0 +1,15 @@
+$kind: http-request
+method: GET
+url: '{{baseUrl}}/api/orders/my-orders'
+order: 2000
+auth:
+  type: bearer
+  credentials:
+    - key: token
+      value: '{{buyerToken}}'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status is 200", () => pm.response.to.have.status(200));
+      pm.test("Has orders array", () => pm.expect(pm.response.json()).to.have.property("orders"));

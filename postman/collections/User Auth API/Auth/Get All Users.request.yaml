@@ -1,0 +1,16 @@
+$kind: http-request
+method: GET
+url: '{{baseUrl}}/api/auth/users'
+order: 13000
+auth:
+  type: bearer
+  credentials:
+    - key: token
+      value: '{{token}}'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status is 200", () => pm.response.to.have.status(200));
+      pm.test("Has users array", () => pm.expect(pm.response.json()).to.have.property("users"));
+      pm.test("Users is array", () => pm.expect(pm.response.json().users).to.be.an("array"));
